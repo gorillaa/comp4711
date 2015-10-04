@@ -1,7 +1,7 @@
 <?php
 
 
-class League extends CI_Model {
+class LeagueTeams extends CI_Model {
 	var $afc_data = array(
         array('id' => 'NE', 'team' => 'New England Patriots'),
         array('id' => 'CIN', 'team' => 'Cincinnati Bengals'),
@@ -12,17 +12,17 @@ class League extends CI_Model {
         array('id' => 'CAR', 'team' => 'Carolina Panthers'),
         array('id' => 'ARI', 'team' => 'Arizona Cardinals')
     );
-	
+
 	public function __construct() {
 		parent::__construct();
 	}
-	
+
 	public function all_afc() {
         return $this->afc_data;
     }
-	
+
 	public function all_nfc() {
         return $this->nfc_data;
     }
-	
+
 }
