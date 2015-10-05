@@ -9,6 +9,7 @@ $config['menu_choices'] = array(
         array('name' => 'About', 'link' => '/about')
     ));
 
+
 /*
 |--------------------------------------------------------------------------
 | Base Site URL
