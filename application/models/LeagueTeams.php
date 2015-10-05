@@ -1,7 +1,12 @@
 <?php
 
-
+/**
+ * This is a mock database model for the league teams.
+ *
+ * @author Darnell Andries
+ */
 class LeagueTeams extends CI_Model {
+	/* These two arrays provide mock data for the list of teams*/
 	var $afc_data = array(
         array('id' => 'NE', 'team' => 'New England Patriots'),
         array('id' => 'CIN', 'team' => 'Cincinnati Bengals'),
