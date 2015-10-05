@@ -1,16 +1,16 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Welcome extends Application {
+class About extends Application {
 
 	/**
-	 * This is the controller for the homepage.
+	 * This is the controller for the about page.
          * 
          * @author Luka Bresan
 	 */
 	public function index()
 	{
-            $this->data['pagebody'] = 'homepage';    // this is the view we want shown
+            $this->data['pagebody'] = 'about';    // this is the view we want shown
             
             $this->render();
 	}
