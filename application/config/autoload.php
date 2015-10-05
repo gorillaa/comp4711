@@ -126,4 +126,6 @@ $autoload['language'] = array();
 |
 |	$autoload['model'] = array('first_model' => 'first');
 */
-$autoload['model'] = array('roster');
+
+$autoload['model'] = array('roster', 'leagueteams');
+
