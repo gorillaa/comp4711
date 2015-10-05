@@ -1,6 +1,14 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+// the menu basics (text navbar)
+$config['menu_choices'] = array(
+    'menudata' => array(
+        array('name' => 'Roster', 'link' => '/playerroster'),
+        array('name' => 'About', 'link' => '/about')
+        )
+    );
+
 /*
 |--------------------------------------------------------------------------
 | Base Site URL
