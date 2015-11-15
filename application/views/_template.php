@@ -31,11 +31,7 @@ if (!defined('APPPATH'))
                 {content}
             </div>
             <div id="footer" class="span12">
-<<<<<<< HEAD
                 Copyright &copy; 2015,  <a href="mailto:someone@somewhere.com">Gorilla Software</a>.
-=======
-                Copyright &copy; 2015,  <a href="mailto:someone@somewhere.com">Me</a>.
->>>>>>> ba012809feb19d7245946a24134d5fcaa318e371
             </div>
         </div>
         <script src="/assets/js/jquery-1.11.1.min.js"></script>

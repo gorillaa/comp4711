@@ -4,8 +4,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class League extends Application {
 	public function index()
 	{
+		/**
+		 * This is the controller for the football league team list.
+			 * 
+			 * @author Darnell Andries
+		 */
 		$this->data['pagebody'] = 'leaguelist';    // this is the view we want shown
-        // build the list of authors, to pass on to our view
+        // build the list of teams, to pass on to our view
         $records = $this->leagueteams->all_afc();
 
 		foreach ($records as $record) {

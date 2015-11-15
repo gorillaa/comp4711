@@ -18,7 +18,7 @@
       {roster}
       
       <tr >
-        <td><img src="/data/{mug}" title="{name}" style="width:100px;height:150px;"/></td>
+        <td><img src="/data/{mug}" title="{name}" style="width:100px;"/></td>
         <td>{number}</td>
         <td>{name}</td> 
         <td>{position}</td>
