@@ -5,7 +5,7 @@ class PlayerRoster extends Application {
 
 	/**
 	 * This is the controller for the Packer's player roster.
-         * 
+         *
          * @author Dima Goncharov
 	 */
 	public function index($page = 1)
@@ -14,21 +14,21 @@ class PlayerRoster extends Application {
             $this->load->helper("url");
             $this->data['pagebody'] = 'roster';    // this is the view we want show
             $this->data['additionalMenuBar'] = '<ul class="nav"><li><a href="/playerroster/toggleEditMode">Toggle Edit Mode</a></li></ul>';
-            
+
             $config = array();
             $config["base_url"] = base_url() . "playerroster";
             $config["total_rows"] = $this->player->size();
             $config["per_page"] = 12;
-            $config["uri_segment"] = 3;
+            $config["uri_segment"] = 2;
             $choice = $config["total_rows"] / $config["per_page"];
             $config["num_links"] = round($choice);
             //$config['use_page_numbers']  = TRUE;
-            
-            
+
+
             $this->pagination->initialize($config);
-            
+
             $page = ($this->uri->segment(2)) ? $this->uri->segment(2) : 0;
-            
+
             /**
             $source = $this->player->all();
             $roster = array();
@@ -42,35 +42,35 @@ class PlayerRoster extends Application {
                 $menubarlabel = "Turn Edit Mode Off";
             }
             $this->data['additionalMenuBar'] = '<ul class="nav"><li><a href="/playerroster/toggleEditMode">' . $menubarlabel . '</a></li></ul>';
-            
+
             foreach ($source as $record) {
                 $roster[] = array('name' => $record->name, 'number' => $record->number, 'position' => $record->position,
-                                  'height' => $record->height, 'weight' => $record->weight, 'age' => $record->age, 
+                                  'height' => $record->height, 'weight' => $record->weight, 'age' => $record->age,
                                   'exp' => $record->exp, 'mug' => $record->mug, 'singlecontrol' =>  $this->data['singlecontrol'] );
             }
             $this->data['roster'] = $roster;
- 
+
              */
-            
+
              $this->data["roster"] = $this->player->fetch_players($config["per_page"], $page);
-            
+
              $this->data["links"] = $this->pagination->create_links();
 
              $this->render();
 	}
-        
+
         public function view($number) {
             if (!$this->player->exists($number))
                 redirect("/playerroster");
-            
+
             $record = $this->player->get($number);
             $this->data = array_merge($this->data, array('name' => $record->name, 'number' => $record->number, 'position' => $record->position,
-                              'height' => $record->height, 'weight' => $record->weight, 'age' => $record->age, 
+                              'height' => $record->height, 'weight' => $record->weight, 'age' => $record->age,
                               'exp' => $record->exp, 'mug' => $record->mug, 'pagebody' => 'player_view'));
 
             $this->render();
         }
-        
+
         public function toggleEditMode() {
             if (!$this->session->has_userdata("editmode") || $this->session->userdata('editmode') != 1) {
                 $this->session->set_userdata('editmode', 1);
