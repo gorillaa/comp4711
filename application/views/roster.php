@@ -3,9 +3,9 @@
     <h3>Packers Team Roster</h3>
     
     <h3>Choose the ordering:</h3>
-    <a href="/playerroster/{page}/name">Name</a>
-    <a href="/playerroster/{page}/number">Jersey Number</a>
-    <a href="/playerroster/{page}/position">Position</a>
+    <a href="/playerroster/name">Name</a>
+    <a href="/playerroster/number">Jersey Number</a>
+    <a href="/playerroster/position">Position</a>
    
     
       <table style="width:100%">

@@ -8,19 +8,21 @@ class PlayerRoster extends Application {
          * 
          * @author Dima Goncharov
 	 */
-	public function index($page = 1, $order = 'number')
+	public function index($page = 1)
 	{
             $this->load->library("pagination");
             $this->load->helper("url");
+            $this->load->library('session');
             $this->data['pagebody'] = 'roster';    // this is the view we want show
             
             $config = array();
             $config["base_url"] = base_url() . "playerroster";
             $config["total_rows"] = $this->player->size();
             $config["per_page"] = 12;
-            $config["uri_segment"] = 3;
+            $config["uri_segment"] = 2;
             $choice = $config["total_rows"] / $config["per_page"];
             $config["num_links"] = round($choice);
+            $order = $this->session->userdata('order');
             //$config['use_page_numbers']  = TRUE;
             
             
@@ -42,9 +44,19 @@ class PlayerRoster extends Application {
             
              $this->data["roster"] = $this->player->fetch_players($config["per_page"], $page, $order);
              $this->data["page"] = $page;
-             $this->data["order"] = $order;
+            // $this->data["order"] = $order;
              $this->data["links"] = $this->pagination->create_links();
 
              $this->render();
 	}
+        
+        public function order($order){
+            $this->load->library('session');
+            $newdata = array(
+                   'order'         => $order
+               );
+            $this->session->set_userdata($newdata);
+            $this->index();
+        
+        }
 }
