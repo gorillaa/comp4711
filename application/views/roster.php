@@ -13,7 +13,6 @@
         <th style="text-align:left">Weight</th> 
         <th style="text-align:left">Age</th>
         <th style="text-align:left">Exp</th>
-        <th style="text-align:left">College</th>
       </tr>
       {roster}
       
@@ -26,7 +25,6 @@
         <td>{weight}</td> 
         <td>{age}</td>
         <td>{exp}</td>
-        <td>{college}</td>
       </tr>
       {/roster}
       </table>

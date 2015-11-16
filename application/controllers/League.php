@@ -10,20 +10,20 @@ class League extends Application {
 			 * @author Darnell Andries
 		 */
 		$this->data['pagebody'] = 'leaguelist';    // this is the view we want shown
-        // build the list of teams, to pass on to our view
-        $records = $this->leagueteams->all_afc();
+                // build the list of teams, to pass on to our view
+                $records = $this->team->all_afc();
 
-		foreach ($records as $record) {
-            $afcteams[] = array('id' => $record['id'], 'team' => $record['team']);
-        }
-		$records = $this->leagueteams->all_nfc();
+                foreach ($records as $record) {
+                    $afcteams[] = array('id' => $record->id, 'name' => $record->name, 'city' => $record->city,'conference' => $record->conference,'division' => $record->division);
+                }
+                        $records = $this->team->all_nfc();
 
-		foreach ($records as $record) {
-            $nfcteams[] = array('id' => $record['id'], 'team' => $record['team']);
-        }
+                foreach ($records as $record) {
+                    $nfcteams[] = array('id' => $record->id, 'name' => $record->name, 'city' => $record->city,'conference' => $record->conference,'division' => $record->division);
+                }
 
 		$this->data['afcteams'] = $afcteams;
 		$this->data['nfcteams'] = $nfcteams;
-        $this->render();
+                $this->render();
 	}
 }
