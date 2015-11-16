@@ -1,5 +1,5 @@
 
-    
+    {addBtn}
     <h3>Packers Team Roster</h3>
     
     <h3>Choose the ordering:</h3>
@@ -12,7 +12,7 @@
     <a href="/playerroster/rostertable">Table</a>
     <br>
     
-
+      
       {roster}
       
 
@@ -25,8 +25,10 @@
       </div>
       
        {/roster}
-    
-    <p>{links}</p>
+       
+       <div style="clear: left;">
+            <p>{links}</p>
+       </div>
    
     
 
