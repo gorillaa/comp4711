@@ -13,8 +13,13 @@ class PlayerRoster extends Application {
             $this->load->library("pagination");
             $this->load->helper("url");
             $this->load->library('session');
-            $this->data['pagebody'] = 'roster';    // this is the view we want show
+            $layout = $this->session->userdata('layout');
+            if($layout == '') $layout = 'rostertable';
             
+            $this->data['pagebody'] = $layout;    // this is the view we want show
+            
+            $config['first_link'] = "&lt;&lt; First";
+            $config['last_link'] = "Last &gt;&gt;";
             $config = array();
             $config["base_url"] = base_url() . "playerroster";
             $config["total_rows"] = $this->player->size();
@@ -23,28 +28,17 @@ class PlayerRoster extends Application {
             $choice = $config["total_rows"] / $config["per_page"];
             $config["num_links"] = round($choice);
             $order = $this->session->userdata('order');
-            //$config['use_page_numbers']  = TRUE;
+            if($order == '') $order = 'name';
+
             
             
             $this->pagination->initialize($config);
             
             $page = ($this->uri->segment(2)) ? $this->uri->segment(2) : 0;
-            
-            /**
-            $source = $this->player->all();
-            $roster = array();
-            foreach ($source as $record) {
-                $roster[] = array('name' => $record->name, 'number' => $record->number, 'position' => $record->position,
-                                  'height' => $record->height, 'weight' => $record->weight, 'age' => $record->age, 
-                                  'exp' => $record->exp, 'mug' => $record->mug  );
-            }
-            $this->data['roster'] = $roster;
- 
-             */
+
             
              $this->data["roster"] = $this->player->fetch_players($config["per_page"], $page, $order);
              $this->data["page"] = $page;
-            // $this->data["order"] = $order;
              $this->data["links"] = $this->pagination->create_links();
 
              $this->render();
@@ -54,6 +48,16 @@ class PlayerRoster extends Application {
             $this->load->library('session');
             $newdata = array(
                    'order'         => $order
+               );
+            $this->session->set_userdata($newdata);
+            $this->index();
+        
+        }
+        
+        public function layout($layout){
+            $this->load->library('session');
+            $newdata = array(
+                   'layout'         => $layout
                );
             $this->session->set_userdata($newdata);
             $this->index();
