@@ -32,6 +32,7 @@ class PlayerRoster extends Application {
             $config["uri_segment"] = 2;
             $choice = $config["total_rows"] / $config["per_page"];
             $config["num_links"] = round($choice);
+            $config["first_link"] = round("First");
             $order = $this->session->userdata('order');
             if($order == '') $order = 'name';
 

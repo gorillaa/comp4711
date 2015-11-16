@@ -2,7 +2,7 @@
     
     <h3>Packers Team Roster</h3>
 
-    
+    {addBtn}
     <h3>Choose the ordering:</h3>
     <a href="/playerroster/name">Name</a>
     <a href="/playerroster/number">Jersey Number</a>
@@ -13,7 +13,7 @@
     <a href="/playerroster/rostertable">Table</a>
     <br>
     
-    
+      
       <table style="width:100%">
         
         <tr>
