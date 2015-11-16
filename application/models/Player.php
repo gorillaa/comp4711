@@ -13,7 +13,7 @@ class Player extends MY_Model {
     
             
 
-        public function fetch_players($limit, $start, $order) {
+        public function fetch_players($limit, $start, $order, $forelink) {
         $this->db->limit($limit, $start);
         
         $this->db->order_by($order, 'asc');
