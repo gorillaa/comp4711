@@ -18,7 +18,7 @@
 
       
       <div class="img">
-        <a target="_blank" href="">
+        <a target="_blank" href="{singlecontrol}{number}">
           <img src="/data/{mug}" alt="{name}" width="110">
         </a>
         <div class="desc">Name: {name} Number: {number} Position:{position}</div>
