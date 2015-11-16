@@ -12,12 +12,12 @@ class PlayerRoster extends Application {
 	{
             $this->data['pagebody'] = 'roster';    // this is the view we want show
             
-            $source = $this->roster->all();
+            $source = $this->player->all();
             $roster = array();
             foreach ($source as $record) {
-                $roster[] = array('name' => $record['name'], 'number' => $record['number'], 'position' => $record['position'],
-                                  'height' => $record['height'], 'weight' => $record['weight'], 'age' => $record['age'], 
-                                  'exp' => $record['exp'], 'college' => $record['college'], 'mug' => $record['mug']  );
+                $roster[] = array('name' => $record->name, 'number' => $record->number, 'position' => $record->position,
+                                  'height' => $record->height, 'weight' => $record->weight, 'age' => $record->age, 
+                                  'exp' => $record->exp, 'mug' => $record->mug  );
             }
             $this->data['roster'] = $roster;
 
