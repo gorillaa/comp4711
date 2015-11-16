@@ -51,6 +51,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 $route['default_controller'] = 'welcome';
 $route['playerroster'] = 'playerroster';
+$route['playerroster/(:num)'] = 'playerroster/index/$1';
+$route['playerroster/name'] = 'playerroster/order/name';
+$route['playerroster/number'] = 'playerroster/order/number';
+$route['playerroster/position'] = 'playerroster/order/position';
+$route['playerroster/rostertable'] = 'playerroster/layout/rostertable';
+$route['playerroster/rostergallery'] = 'playerroster/layout/rostergallery';
 $route['about'] = 'about';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
