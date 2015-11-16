@@ -12,8 +12,18 @@ class PlayerRoster extends Application {
 	{
             $this->load->library("pagination");
             $this->load->helper("url");
-            $this->data['pagebody'] = 'roster';    // this is the view we want show
+
+            $this->load->library('session');
+            $layout = $this->session->userdata('layout');
+            if($layout == '') $layout = 'rostertable';
+            
+            $this->data['pagebody'] = $layout;    // this is the view we want show
+            
+            $config['first_link'] = "&lt;&lt; First";
+            $config['last_link'] = "Last &gt;&gt;";
+
             $this->data['additionalMenuBar'] = '<ul class="nav"><li><a href="/playerroster/toggleEditMode">Toggle Edit Mode</a></li></ul>';
+
 
             $config = array();
             $config["base_url"] = base_url() . "playerroster";
@@ -22,7 +32,8 @@ class PlayerRoster extends Application {
             $config["uri_segment"] = 2;
             $choice = $config["total_rows"] / $config["per_page"];
             $config["num_links"] = round($choice);
-            //$config['use_page_numbers']  = TRUE;
+            $order = $this->session->userdata('order');
+            if($order == '') $order = 'name';
 
 
             $this->pagination->initialize($config);
@@ -30,6 +41,9 @@ class PlayerRoster extends Application {
             $page = ($this->uri->segment(2)) ? $this->uri->segment(2) : 0;
 
 
+            
+             $this->data["roster"] = $this->player->fetch_players($config["per_page"], $page, $order);
+             $this->data["page"] = $page;
 
             if (!$this->session->has_userdata("editmode") || $this->session->userdata('editmode') != 1) {
                 $this->data['singlecontrol'] = '/playerroster/view/';
@@ -50,6 +64,27 @@ class PlayerRoster extends Application {
              $this->render();
 	}
 
+        
+        public function order($order){
+            $this->load->library('session');
+            $newdata = array(
+                   'order'         => $order
+               );
+            $this->session->set_userdata($newdata);
+            $this->index();
+        
+        }
+        
+        public function layout($layout){
+            $this->load->library('session');
+            $newdata = array(
+                   'layout'         => $layout
+               );
+            $this->session->set_userdata($newdata);
+            $this->index();
+        }
+        
+
         public function view($number) {
             if (!$this->player->exists($number))
                 redirect("/playerroster");
@@ -69,5 +104,6 @@ class PlayerRoster extends Application {
                 $this->session->set_userdata('editmode', 0);
             }
             redirect("/playerroster");
+
         }
 }
