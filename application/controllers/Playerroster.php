@@ -29,7 +29,7 @@ class PlayerRoster extends Application {
             
             $page = ($this->uri->segment(2)) ? $this->uri->segment(2) : 0;
             
-            /**
+            
             $source = $this->player->all();
             $roster = array();
             if (!$this->session->has_userdata("editmode") || $this->session->userdata('editmode') != 1) {
@@ -43,16 +43,7 @@ class PlayerRoster extends Application {
             }
             $this->data['additionalMenuBar'] = '<ul class="nav"><li><a href="/playerroster/toggleEditMode">' . $menubarlabel . '</a></li></ul>';
             
-            foreach ($source as $record) {
-                $roster[] = array('name' => $record->name, 'number' => $record->number, 'position' => $record->position,
-                                  'height' => $record->height, 'weight' => $record->weight, 'age' => $record->age, 
-                                  'exp' => $record->exp, 'mug' => $record->mug, 'singlecontrol' =>  $this->data['singlecontrol'] );
-            }
-            $this->data['roster'] = $roster;
- 
-             */
-            
-             $this->data["roster"] = $this->player->fetch_players($config["per_page"], $page);
+             $this->data["roster"] = $this->player->fetch_players($config["per_page"], $page, $this->data['singlecontrol']);
             
              $this->data["links"] = $this->pagination->create_links();
 
