@@ -8,7 +8,7 @@ class PlayerRoster extends Application {
          * 
          * @author Dima Goncharov
 	 */
-	public function index()
+	public function index($page = 1)
 	{
             $this->load->library("pagination");
             $this->load->helper("url");
@@ -16,14 +16,18 @@ class PlayerRoster extends Application {
             $this->data['additionalMenuBar'] = '<ul class="nav"><li><a href="/playerroster/toggleEditMode">Toggle Edit Mode</a></li></ul>';
             
             $config = array();
-            $config["base_url"] = base_url() . "welcome/playerroster";
+            $config["base_url"] = base_url() . "playerroster";
             $config["total_rows"] = $this->player->size();
             $config["per_page"] = 12;
             $config["uri_segment"] = 3;
+            $choice = $config["total_rows"] / $config["per_page"];
+            $config["num_links"] = round($choice);
+            //$config['use_page_numbers']  = TRUE;
+            
             
             $this->pagination->initialize($config);
             
-            $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+            $page = ($this->uri->segment(2)) ? $this->uri->segment(2) : 0;
             
             /**
             $source = $this->player->all();
