@@ -42,7 +42,7 @@ class PlayerRoster extends Application {
 
 
             
-             $this->data["roster"] = $this->player->fetch_players($config["per_page"], $page, $order);
+             //$this->data["roster"] = $this->player->fetch_players($config["per_page"], $page, $order);
              $this->data["page"] = $page;
 
             if (!$this->session->has_userdata("editmode") || $this->session->userdata('editmode') != 1) {
@@ -57,7 +57,7 @@ class PlayerRoster extends Application {
             $this->data['additionalMenuBar'] = '<ul class="nav"><li><a href="/playerroster/toggleEditMode">' . $menubarlabel . '</a></li></ul>';
 
 
-             $this->data["roster"] = $this->player->fetch_players($config["per_page"], $page, $this->data['singlecontrol']);
+             $this->data["roster"] = $this->player->fetch_players($config["per_page"], $page ,$order, $this->data['singlecontrol']);
 
              $this->data["links"] = $this->pagination->create_links();
 
