@@ -1,7 +1,7 @@
 <div class="row">
     
     <h3>Packers Team Roster</h3>
-    
+      {addBtn}
       <table style="width:100%">
         
         <tr>
@@ -19,7 +19,7 @@
       <tr >
         <td><img src="/data/{mug}" title="{name}" style="width:100px;"/></td>
         <td>{number}</td>
-        <td>{name}</td> 
+        <td><a href="{singlecontrol}{number}">{name}</a></td> 
         <td>{position}</td>
         <td>{height}</td>
         <td>{weight}</td> 
