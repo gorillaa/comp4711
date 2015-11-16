@@ -8,7 +8,7 @@ class PlayerRoster extends Application {
          * 
          * @author Dima Goncharov
 	 */
-	public function index($page = 1)
+	public function index($page = 1, $order = 'number')
 	{
             $this->load->library("pagination");
             $this->load->helper("url");
@@ -40,8 +40,9 @@ class PlayerRoster extends Application {
  
              */
             
-             $this->data["roster"] = $this->player->fetch_players($config["per_page"], $page);
-            
+             $this->data["roster"] = $this->player->fetch_players($config["per_page"], $page, $order);
+             $this->data["page"] = $page;
+             $this->data["order"] = $order;
              $this->data["links"] = $this->pagination->create_links();
 
              $this->render();

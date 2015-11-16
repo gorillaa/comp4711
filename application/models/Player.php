@@ -12,9 +12,10 @@ class Player extends MY_Model {
     }
     
             
-        public function fetch_players($limit, $start) {
+        public function fetch_players($limit, $start, $order) {
         $this->db->limit($limit, $start);
-        $this->db->order_by($this->_keyField, 'asc');
+        
+        $this->db->order_by($order, 'asc');
         $query = $this->db->get($this->_tableName);
         $roster = array();
         $source = $query->result();
