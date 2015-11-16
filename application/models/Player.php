@@ -12,6 +12,7 @@ class Player extends MY_Model {
     }
     
             
+
         public function fetch_players($limit, $start, $order) {
         $this->db->limit($limit, $start);
         
@@ -20,11 +21,12 @@ class Player extends MY_Model {
         $roster = array();
         $source = $query->result();
 
+
        
             foreach ($source as $record) {
                 $roster[] = array('name' => $record->name, 'number' => $record->number, 'position' => $record->position,
                                   'height' => $record->height, 'weight' => $record->weight, 'age' => $record->age, 
-                                  'exp' => $record->exp, 'mug' => $record->mug  );
+                                  'exp' => $record->exp, 'mug' => $record->mug, 'singlecontrol' => $forelink );
             }
             return $roster;
         

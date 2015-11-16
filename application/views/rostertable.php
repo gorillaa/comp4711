@@ -1,6 +1,7 @@
 <div class="row">
     
     <h3>Packers Team Roster</h3>
+
     
     <h3>Choose the ordering:</h3>
     <a href="/playerroster/name">Name</a>
@@ -11,7 +12,6 @@
     <a href="/playerroster/rostergallery">Gallery</a>
     <a href="/playerroster/rostertable">Table</a>
     <br>
-    
     
     
       <table style="width:100%">
@@ -31,7 +31,7 @@
       <tr >
         <td><img src="/data/{mug}" title="{name}" style="width:100px;"/></td>
         <td>{number}</td>
-        <td>{name}</td> 
+        <td><a href="{singlecontrol}{number}">{name}</a></td> 
         <td>{position}</td>
         <td>{height}</td>
         <td>{weight}</td> 
