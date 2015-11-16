@@ -29,5 +29,7 @@
       {/roster}
       </table>
     
+    <p><?php echo $links; ?></p>
+    
     
 </div>
