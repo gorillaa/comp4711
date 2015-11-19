@@ -14,12 +14,12 @@ class League extends Application {
                 $records = $this->team->all_afc();
 
                 foreach ($records as $record) {
-                    $afcteams[] = array('id' => $record->id, 'name' => $record->name, 'city' => $record->city,'conference' => $record->conference,'division' => $record->division);
+                    $afcteams[] = array('id' => $record->id, 'name' => $record->name, 'city' => $record->city,'conference' => $record->conference,'division' => $record->division, 'netPts' => $record->netPts);
                 }
-                        $records = $this->team->all_nfc();
+                $records = $this->team->all_nfc();
 
                 foreach ($records as $record) {
-                    $nfcteams[] = array('id' => $record->id, 'name' => $record->name, 'city' => $record->city,'conference' => $record->conference,'division' => $record->division);
+                    $nfcteams[] = array('id' => $record->id, 'name' => $record->name, 'city' => $record->city,'conference' => $record->conference,'division' => $record->division, 'netPts' => $record->netPts);
                 }
 
 		$this->data['afcteams'] = $afcteams;
