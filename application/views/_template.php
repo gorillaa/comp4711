@@ -21,18 +21,25 @@ if (!defined('APPPATH'))
     </head>
     <body>
         <div class="container">
-            <div class="navbar">
-                <div class="navbar-inner">
-                    <a class="brand" href="/"><img src="/assets/images/logo.png"/></a>
-                    {menubar} 
-                    {additionalMenuBar}
-                </div>
-                
-            </div>
-            <div id="content">
-                <h1>{title}</h1>
-                {content}
-            </div>
+			<div id="logo">
+				<img src="/assets/images/PackersLogo.png">
+			</div>
+            <nav class="navbar navbar-default">
+				<div>
+					<ul class="nav navbar-nav">
+						{menubar} 
+						{additionalMenuBar}
+					</ul>
+				</div>
+            </nav>
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<div id="content">
+						<h1>{title}</h1>
+						{content}
+					</div>
+				</div>
+			</div>
             <div id="footer" class="span12">
                 Copyright &copy; 2015,  <a href="mailto:someone@somewhere.com">Gorilla Software</a>.
             </div>

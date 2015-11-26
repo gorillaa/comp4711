@@ -1,4 +1,4 @@
-<div class="row">
+<div>
     
     <h3>Packers Team Roster</h3>
 
@@ -41,7 +41,11 @@
       {/roster}
       </table>
     
-    <p>{links}</p>
+	<nav>
+	  <ul class="pagination">
+		{links}
+	  </ul>
+	</nav>
     
     
 </div>

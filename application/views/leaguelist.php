@@ -1,5 +1,5 @@
 <div class="row">
-	<div>
+	<div class="col-md-4">
 		<form>
 			<label for="groupSelect">Group</label>
 			<select id="groupSelect" name="groupSelect" class="form-control" onchange="this.form.submit()">
@@ -16,13 +16,15 @@
 
 		</form>
 	</div>
-	{league_tables}
-		<h4>{title}</h4>
-		<table class="table">
-			<tr><th>ID</th><th>Name</th><th>City</th><th>Conference</th><th>Division</th><th>Net Pts</th></tr>
-			{teams}
-				<tr><td>{id}</td><td>{name}</td><td>{city}</td><td>{conference}</td><td>{division}</td><td>{netPts}</td></tr>
-			{/teams}
-		</table>
-	{/league_tables}
+	<div class="col-md-12">
+		{league_tables}
+			<h4>{title}</h4>
+			<table class="table">
+				<tr><th>ID</th><th>Name</th><th>City</th><th>Conference</th><th>Division</th><th>Net Pts</th></tr>
+				{teams}
+					<tr><td>{id}</td><td>{name}</td><td>{city}</td><td>{conference}</td><td>{division}</td><td>{netPts}</td></tr>
+				{/teams}
+			</table>
+		{/league_tables}
+	</div>
 </div>

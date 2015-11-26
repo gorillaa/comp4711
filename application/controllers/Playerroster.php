@@ -33,6 +33,10 @@ class PlayerRoster extends Application {
             $choice = $config["total_rows"] / $config["per_page"];
             $config["num_links"] = round($choice);
             $config["first_link"] = round("First");
+			$config["prev_tag_open"] = $config["next_tag_open"] = $config["num_tag_open"] = "<li>";
+			$config["prev_tag_close"] = $config["next_tag_close"] = $config["num_tag_close"] = "</li>";
+			$config["cur_tag_open"] = '<li><a href="#">';
+			$config["cur_tag_close"] = '</a></li>';
             $order = $this->session->userdata('order');
             if($order == '') $order = 'name';
 
@@ -55,11 +59,12 @@ class PlayerRoster extends Application {
                 $this->data['addBtn'] = '<a class="btn btn-primary" href="/playercontrol/add">Add New</a>';
                 $menubarlabel = "Turn Edit Mode Off";
             }
-            $this->data['additionalMenuBar'] = '<ul class="nav"><li><a href="/playerroster/toggleEditMode">' . $menubarlabel . '</a></li></ul>';
-
+            $this->data['additionalMenuBar'] = '<li><a href="/playerroster/toggleEditMode">' . $menubarlabel . '</a></li>';
+			
 
              $this->data["roster"] = $this->player->fetch_players($config["per_page"], $page ,$order, $this->data['singlecontrol']);
 
+			 
              $this->data["links"] = $this->pagination->create_links();
 
              $this->render();
