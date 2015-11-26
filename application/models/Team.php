@@ -10,12 +10,16 @@ class Team extends MY_Model {
 		parent::__construct('teams');
 	}
 
-    public function all_afc() {
-        return $this->some("conference", "AFC");
+	public function all_league($order) {
+		return $this->all_and_order($order, 'asc');
+	}
+	
+    public function all_afc($order) {
+        return $this->some_and_order("conference", "AFC", $order, 'asc');
     }
 
-    public function all_nfc() {
-        return $this->some("conference", "NFC");
+    public function all_nfc($order) {
+        return $this->some_and_order("conference", "NFC", $order, 'asc');
     }
 
 }

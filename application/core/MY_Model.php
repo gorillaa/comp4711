@@ -233,6 +233,12 @@ class MY_Model extends CI_Model implements Active_Record {
         $query = $this->db->get($this->_tableName);
         return $query->result();
     }
+	
+	function all_and_order($orderColumn, $asc_or_desc) {
+		$this->db->order_by($orderColumn, $asc_or_desc);
+        $query = $this->db->get($this->_tableName);
+        return $query->result();
+	}
 
     // Return all records as a result set
     function results() {
@@ -244,6 +250,16 @@ class MY_Model extends CI_Model implements Active_Record {
     // Return filtered records as an array of records
     function some($what, $which) {
         $this->db->order_by($this->_keyField, 'asc');
+        if (($what == 'period') && ($which < 9)) {
+            $this->db->where($what, $which); // special treatment for period
+        } else
+            $this->db->where($what, $which);
+        $query = $this->db->get($this->_tableName);
+        return $query->result();
+    }
+	
+	function some_and_order($what, $which, $orderColumn, $asc_or_desc) {
+        $this->db->order_by($orderColumn, $asc_or_desc);
         if (($what == 'period') && ($which < 9)) {
             $this->db->where($what, $which); // special treatment for period
         } else
