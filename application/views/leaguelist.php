@@ -13,6 +13,7 @@
 				<option value="name"{ord_name}>By Team Name</option>
 				<option value="netPts"{ord_netPts}>By Standing</option>
 			</select>
+
 		</form>
 	</div>
 	{league_tables}
