@@ -24,6 +24,11 @@ class Welcome extends Application {
 	}
 
   public function prediction($teamid) {
+			if (count($this->score->getscores($teamid)) < 1) {
+					$this->data["error"] = "ERROR: No scores available for team requested.";
+					$this->parser->parse('errorview', $this->data);
+					return;
+			}
 			$packersgames = $this->score->getscores('GB');
 
 			$avgsum = 0;
