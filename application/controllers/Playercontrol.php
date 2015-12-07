@@ -2,22 +2,26 @@
 
 /**
 * This is the controller for the CRUD operations upon the Player model.
-* 
+*
 * @author Darnell Andries
 */
 
 class PlayerControl extends Application {
+    /*
+        A controller which allows CRUD operations upon the Player model.
 
+        @author Darnell Andries
+    */
     protected $validPositions = array("C","DB","DE","DL","DT","E","FB","FL",
         "G","HB","K","LB","MLB","NG","NT","OG","OL","OLB","OT","P","QB",
         "RB","S","SE","T","TB","TE","WB","WR");
-    
+
     function __construct()
     {
 	parent::__construct();
         $this->load->helper('formfields');
     }
-    
+
     function add()
     {
         $player = $this->player->create();
@@ -33,11 +37,11 @@ class PlayerControl extends Application {
         $this->session->set_userdata("currplayer", $player);
         $this->present(true);
     }
-    
+
     function post()
     {
         $record = $this->player->create();
-        
+
         $record->number = $this->input->post('number');
         $record->name = $this->input->post('name');
         $record->position = $this->input->post('position');
@@ -47,7 +51,7 @@ class PlayerControl extends Application {
         $record->exp = $this->input->post('exp');
         //$record->mug = $this->input->post('mug');
 
-        
+
          // validation
         if (empty($record->name))
           $this->errors[] = 'You must specify a name.';
@@ -67,7 +71,7 @@ class PlayerControl extends Application {
           $this->errors[] = 'You must specify experience.';
         if (empty($_FILES['mug']['name']) && empty($this->input->post("edit")))
             $this->errors[] = 'Mugshot must be provided.';
-        
+
         if (!empty($_FILES['mug']['name'])) {
             $config['upload_path']          = './data/';
             $config['allowed_types']        = 'gif|jpg|png';
@@ -88,7 +92,7 @@ class PlayerControl extends Application {
         } else {
             $record->mug = $this->session->userdata("currplayer")->mug;
         }
-        
+
         // redisplay if any errors
         if (count($this->errors) > 0) {
           if (empty($this->input->post("edit")))
@@ -97,13 +101,13 @@ class PlayerControl extends Application {
           return; // make sure we don't try to save anything
         }
         // Save stuff
-        if (empty($this->input->post('edit'))) 
+        if (empty($this->input->post('edit')))
             $this->player->add($record);
-        else 
+        else
             $this->player->update($record);
         redirect('/playerroster');
     }
-    
+
     function delete($number)
     {
         if (!$this->player->exists($number))
@@ -111,7 +115,7 @@ class PlayerControl extends Application {
         $this->player->delete($number);
         redirect('/playerroster');
     }
-    
+
     function present($edit = false)
     {
 
@@ -130,7 +134,7 @@ class PlayerControl extends Application {
             $this->data['fdelete'] = '';
         }
         $this->data['message'] = $message;
-        $this->data['fnumber'] = makeTextField('Number#', 'number', $player->number); 
+        $this->data['fnumber'] = makeTextField('Number#', 'number', $player->number);
         $this->data['fname'] = makeTextField('Name', 'name', $player->name);
         $this->data['fposition'] = makeTextField('Position', 'position', $player->position);
         $this->data['fheight'] = makeTextField('Height', 'height', $player->height);

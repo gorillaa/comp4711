@@ -1,7 +1,11 @@
 /* CSS definition file containing site stylesheet */
-body {}
-#content {width:100%; margin-left:5% auto;margin-right:5% auto;}
-#footer {font-size: small; font-style:italic;text-align:center;}
+body { background-image: url("/assets/images/bg.jpg");
+	   background-size: 100% auto; 
+	   background-repeat: no-repeat;
+	   background-color: black;
+}
+#content {width:100%; margin-left:5% auto;margin-right:5% auto; background-color: white; padding:15px;}
+#footer {font-size: small; font-style:italic;text-align:center; color:white;}
 .row>div {margin-bottom:10px;}
 
 div.img {
@@ -23,6 +27,15 @@ div.img img {
 div.img a:hover img {
     border:1px solid #0000ff;
 }
+.navbar-nav {
+	padding-left:10px;
+}
+
+#logo {
+	width:100%;
+	text-align:center;
+	padding: 10px 0px 10px 0px;
+}
 
 div.desc {
     text-align: center;
@@ -33,3 +46,7 @@ div.desc {
 
 .errors {color: red; font-weight:bold; font-size:large;}
 
+#content {
+	width:100%;
+	margin-bottom:10px;
+}
