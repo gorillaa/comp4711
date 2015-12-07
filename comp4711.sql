@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 20, 2015 at 12:04 AM
+-- Generation Time: Dec 07, 2015 at 03:52 AM
 -- Server version: 5.6.26
--- PHP Version: 5.5.28
+-- PHP Version: 5.6.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -124,13 +124,13 @@ INSERT INTO `teams` (`id`, `name`, `city`, `conference`, `division`, `netPts`) V
 (4, 'Buffalo Bills', 'Orchard Park, NY', 'AFC', 'ACE', 24),
 (5, 'Carolina Panthers', 'Charlotte, NC', 'NFC', 'NCS', 80),
 (6, 'Chicago Bears', 'Chicago, IL', 'NFC', 'NCN', -35),
-(7, 'Cincinnati Bengals', 'Cincinnati, Ohio', 'AFC', 'ACN', 83),
+(7, 'Cincinnati Bengals', 'Cincinnati, Ohio', 'AFC', 'ACN', 87),
 (8, 'Cleveland Browns', 'Cleveland, OH', 'AFC', 'ACN', -91),
 (9, 'Dallas Cowboys', 'Arlington, TX', 'NFC', 'NCE', -48),
 (10, 'Denver Broncos', 'Denver, CO', 'AFC', 'ACW', 37),
 (11, 'Detroit Lions', 'Detroit, MI', 'NFC', 'NCN', -94),
 (12, 'Green Bay Packers', 'Green Bay, WI', 'NFC', 'NCN', 34),
-(13, 'Houston Texans', 'Houston, TX', 'AFC', 'ACS', -27),
+(13, 'Houston Texans', 'Houston, TX', 'AFC', 'ACS', -31),
 (14, 'Indianapolis Colts', 'Indianapolis, IN', 'AFC', 'ACS', -27),
 (15, 'Jacksonville Jaguars', 'Jacksonville, FL', 'AFC', 'ACS', -63),
 (16, 'Kansas City Chiefs', 'Kansas City, MO', 'AFC', 'ACW', 29),
