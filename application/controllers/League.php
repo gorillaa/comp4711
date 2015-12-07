@@ -118,5 +118,8 @@ class League extends Application {
 
 	}
 
+	public function updateLeagueHistory() {
+
+	}
 
 }
