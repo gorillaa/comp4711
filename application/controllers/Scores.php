@@ -3,7 +3,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
 class Scores extends Application {
+    /*
+        The controller which fetches scores via RPC,
+        stores them in the database, and displays them to the user.
 
+        @author Luka Bresan, Darnell Andries
+    */
     function __construct() {
         parent::__construct();
     }

@@ -27,7 +27,7 @@ if (!defined('APPPATH'))
             <nav class="navbar navbar-default">
 				<div>
 					<ul class="nav navbar-nav">
-						{menubar} 
+						{menubar}
 						{additionalMenuBar}
 					</ul>
 				</div>
@@ -46,5 +46,6 @@ if (!defined('APPPATH'))
         </div>
         <script src="/assets/js/jquery-1.11.1.min.js"></script>
         <script src="/assets/js/bootstrap.min.js"></script>
+        {additionalJs}
     </body>
 </html>

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 07, 2015 at 03:52 AM
+-- Generation Time: Dec 07, 2015 at 07:14 AM
 -- Server version: 5.6.26
 -- PHP Version: 5.6.12
 
@@ -100,56 +100,76 @@ INSERT INTO `players` (`number`, `name`, `position`, `height`, `weight`, `age`, 
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `scores`
+--
+
+DROP TABLE IF EXISTS `scores`;
+CREATE TABLE IF NOT EXISTS `scores` (
+  `id` int(11) NOT NULL,
+  `hometeam` varchar(10) NOT NULL,
+  `awayteam` varchar(10) NOT NULL,
+  `homescore` varchar(10) NOT NULL,
+  `awayscore` varchar(10) NOT NULL,
+  `date` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `teams`
 --
 
 DROP TABLE IF EXISTS `teams`;
 CREATE TABLE IF NOT EXISTS `teams` (
   `id` int(11) NOT NULL,
+  `code` varchar(10) NOT NULL,
   `name` varchar(60) NOT NULL,
-  `city` varchar(50) NOT NULL,
   `conference` varchar(10) NOT NULL,
   `division` varchar(20) NOT NULL,
-  `netPts` int(11) NOT NULL
+  `netPts` int(11) NOT NULL,
+  `pointsfor` int(11) NOT NULL,
+  `pointsagainst` int(11) NOT NULL,
+  `home` varchar(10) NOT NULL,
+  `road` varchar(10) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `teams`
 --
 
-INSERT INTO `teams` (`id`, `name`, `city`, `conference`, `division`, `netPts`) VALUES
-(1, 'Arizona Cardinals', 'Glendale, AZ', 'NFC', 'NCW', 117),
-(2, 'Atlanta Falcons', 'Atlanta, GA', 'NFC', 'NCS', 39),
-(3, 'Baltimore Ravens', 'Baltimore, MD', 'AFC', 'ACN', -26),
-(4, 'Buffalo Bills', 'Orchard Park, NY', 'AFC', 'ACE', 24),
-(5, 'Carolina Panthers', 'Charlotte, NC', 'NFC', 'NCS', 80),
-(6, 'Chicago Bears', 'Chicago, IL', 'NFC', 'NCN', -35),
-(7, 'Cincinnati Bengals', 'Cincinnati, Ohio', 'AFC', 'ACN', 87),
-(8, 'Cleveland Browns', 'Cleveland, OH', 'AFC', 'ACN', -91),
-(9, 'Dallas Cowboys', 'Arlington, TX', 'NFC', 'NCE', -48),
-(10, 'Denver Broncos', 'Denver, CO', 'AFC', 'ACW', 37),
-(11, 'Detroit Lions', 'Detroit, MI', 'NFC', 'NCN', -94),
-(12, 'Green Bay Packers', 'Green Bay, WI', 'NFC', 'NCN', 34),
-(13, 'Houston Texans', 'Houston, TX', 'AFC', 'ACS', -31),
-(14, 'Indianapolis Colts', 'Indianapolis, IN', 'AFC', 'ACS', -27),
-(15, 'Jacksonville Jaguars', 'Jacksonville, FL', 'AFC', 'ACS', -63),
-(16, 'Kansas City Chiefs', 'Kansas City, MO', 'AFC', 'ACW', 29),
-(17, 'Miami Dolphins', 'Miami Gardens, FL', 'AFC', 'ACE', -34),
-(18, 'Minnesota Vikings', 'Minneapolis, MN', 'NFC', 'NCN', 44),
-(19, 'New England Patriots', 'Foxborough, MA', 'AFC', 'ACE', 134),
-(20, 'New Orleans Saints', 'New Orleans, LA', 'NFC', 'NCS', -60),
-(21, 'New York Giants', 'East Rutherford, NJ', 'NFC', 'NCE', 20),
-(22, 'New York Jets', 'East Rutherford, NJ', 'AFC', 'ACE', 33),
-(23, 'Oakland Raiders', 'Oakland, CA', 'AFC', 'ACW', -14),
-(24, 'Philadelphia Eagles', 'Philadelphia, PA', 'NFC', 'NCE', 28),
-(25, 'Pittsburgh Steelers', 'Pittsburgh, PA', 'AFC', 'ACN', 45),
-(26, 'San Diego Chargers', 'San Diego, CA', 'AFC', 'ACW', -39),
-(27, 'San Francisco 49ers', 'Santa Clara, CA', 'NFC', 'NCW', -97),
-(28, 'Seattle Seahawks', 'Seattle, WA', 'NFC', 'NCW', 20),
-(29, 'St. Louis Rams', 'St. Louis, MO', 'NFC', 'NCW', -17),
-(30, 'Tampa Bay Buccaneers', 'Tampa, FL', 'NFC', 'NCS', -46),
-(31, 'Tennessee Titans', 'Nashville, TN', 'AFC', 'ACS', -45),
-(32, 'Washington Redskins', 'Landover, MD', 'NFC', 'NCE', -4);
+INSERT INTO `teams` (`id`, `code`, `name`, `conference`, `division`, `netPts`, `pointsfor`, `pointsagainst`, `home`, `road`) VALUES
+(1, 'ARI', 'Arizona Cardinals', 'NFC', 'NCW', 117, 302, 185, '3-1', '4-1'),
+(2, 'ATL', 'Atlanta Falcons', 'NFC', 'NCS', 39, 229, 190, '3-1', '3-2'),
+(3, 'BAL', 'Baltimore Ravens', 'AFC', 'ACN', -26, 210, 236, '1-3', '1-4'),
+(4, 'BUF', 'Buffalo Bills', 'AFC', 'ACE', 24, 231, 207, '2-3', '3-1'),
+(5, 'CAR', 'Carolina Panthers', 'NFC', 'NCS', 80, 255, 175, '5-0', '4-0'),
+(6, 'CHI', 'Chicago Bears', 'NFC', 'NCN', -35, 199, 234, '1-3', '3-2'),
+(7, 'CIN', 'Cincinnati Bengals', 'AFC', 'ACN', 87, 229, 142, '4-0', '4-0'),
+(8, 'CLE', 'Cleveland Browns', 'AFC', 'ACN', -91, 186, 277, '1-3', '1-5'),
+(9, 'DAL', 'Dallas Cowboys', 'NFC', 'NCE', -48, 166, 214, '1-4', '1-3'),
+(10, 'DEN', 'Denver Broncos', 'AFC', 'ACW', 37, 205, 168, '3-1', '4-1'),
+(11, 'DET', 'Detroit Lions', 'NFC', 'NCN', -94, 167, 261, '1-3', '1-4'),
+(12, 'GB', 'Green Bay Packers', 'NFC', 'NCN', 34, 219, 185, '4-1', '2-2'),
+(13, 'HOU', 'Houston Texans', 'AFC', 'ACS', -31, 174, 205, '2-2', '1-3'),
+(14, 'IND', 'Indianapolis Colts', 'AFC', 'ACS', -27, 200, 227, '2-3', '2-2'),
+(15, 'JAC', 'Jacksonville Jaguars', 'AFC', 'ACS', -63, 192, 255, '2-2', '1-4'),
+(16, 'KC', 'Kansas City Chiefs', 'AFC', 'ACW', 29, 224, 195, '2-2', '2-3'),
+(17, 'MIA', 'Miami Dolphins', 'AFC', 'ACE', -34, 191, 225, '1-2', '3-3'),
+(18, 'MIN', 'Minnesota Vikings', 'NFC', 'NCN', 44, 198, 154, '4-0', '3-2'),
+(19, 'NE', 'New England Patriots', 'AFC', 'ACE', 134, 303, 169, '5-0', '4-0'),
+(20, 'NO', 'New Orleans Saints', 'NFC', 'NCS', -60, 255, 315, '3-2', '1-4'),
+(21, 'NYG', 'New York Giants', 'NFC', 'NCE', 20, 273, 253, '3-2', '2-3'),
+(22, 'NYJ', 'New York Jets', 'AFC', 'ACE', 33, 217, 184, '3-2', '2-2'),
+(23, 'OAK', 'Oakland Raiders', 'AFC', 'ACW', -14, 227, 241, '2-3', '2-2'),
+(24, 'PHI', 'Philadelphia Eagles', 'NFC', 'NCE', 28, 212, 184, '2-2', '2-3'),
+(25, 'PIT', 'Pittsburgh Steelers', 'AFC', 'ACN', 45, 236, 191, '4-2', '2-2'),
+(26, 'SD', 'San Diego Chargers', 'AFC', 'ACW', -39, 210, 249, '2-3', '0-4'),
+(27, 'SEA', 'Seattle Seahawks', 'NFC', 'NCW', 20, 199, 179, '2-2', '2-3'),
+(28, 'SF', 'San Francisco 49ers', 'NFC', 'NCW', -97, 126, 223, '3-2', '0-4'),
+(29, 'STL', 'St. Louis Rams', 'NFC', 'NCW', -17, 166, 183, '3-2', '1-3'),
+(30, 'TB', 'Tampa Bay Buccaneers', 'NFC', 'NCS', -46, 191, 237, '2-3', '2-2'),
+(31, 'TEN', 'Tennessee Titans', 'AFC', 'ACS', -45, 169, 214, '0-5', '2-2'),
+(32, 'WAS', 'Washington Redskins', 'NFC', 'NCE', -4, 205, 209, '4-1', '0-4');
 
 --
 -- Indexes for dumped tables
@@ -160,6 +180,12 @@ INSERT INTO `teams` (`id`, `name`, `city`, `conference`, `division`, `netPts`) V
 --
 ALTER TABLE `players`
   ADD PRIMARY KEY (`number`);
+
+--
+-- Indexes for table `scores`
+--
+ALTER TABLE `scores`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `teams`

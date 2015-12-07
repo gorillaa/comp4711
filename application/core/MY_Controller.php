@@ -27,6 +27,7 @@ class Application extends CI_Controller {
         $this->errors = array();
         $this->data['pageTitle'] = 'NFL Web App';   // our default page
         $this->data['additionalMenuBar'] = '';
+        $this->data['additionalJs'] = '';
     }
 
     /**

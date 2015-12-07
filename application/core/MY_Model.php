@@ -233,7 +233,7 @@ class MY_Model extends CI_Model implements Active_Record {
         $query = $this->db->get($this->_tableName);
         return $query->result();
     }
-	
+
 	function all_and_order($orderColumn, $asc_or_desc) {
 		$this->db->order_by($orderColumn, $asc_or_desc);
         $query = $this->db->get($this->_tableName);
@@ -257,7 +257,7 @@ class MY_Model extends CI_Model implements Active_Record {
         $query = $this->db->get($this->_tableName);
         return $query->result();
     }
-	
+
 	function some_and_order($what, $which, $orderColumn, $asc_or_desc) {
         $this->db->order_by($orderColumn, $asc_or_desc);
         if (($what == 'period') && ($which < 9)) {
@@ -267,6 +267,17 @@ class MY_Model extends CI_Model implements Active_Record {
         $query = $this->db->get($this->_tableName);
         return $query->result();
     }
+
+    function some_some_and_order($what, $which, $what2, $which2, $orderColumn, $asc_or_desc) {
+          $this->db->order_by($orderColumn, $asc_or_desc);
+          if (($what == 'period') && ($which < 9)) {
+              $this->db->where($what, $which); // special treatment for period
+          } else
+              $this->db->where($what, $which);
+          $this->db->or_where($what2, $which2);
+          $query = $this->db->get($this->_tableName);
+          return $query->result();
+      }
 
     // Determine the highest key used
     function highest() {
