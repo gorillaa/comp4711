@@ -2,6 +2,11 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class League extends Application {
+	/**
+		 * This is the controller for the football league team list.
+			 *
+			 * @author Darnell Andries
+		 */
 	private function set_group_and_order_data() {
 		if (empty($this->data['grp_conference'])) {
 			$this->data['grp_conference'] = '';
@@ -33,7 +38,9 @@ class League extends Application {
 				$leaguetables[$record->division]['teams'] = array();
 				$leaguetables[$record->division]['title'] = $record->division;
 			}
-			$leaguetables[$record->division]['teams'][] = array('id' => $record->id, 'name' => $record->name, 'city' => $record->city,'conference' => $record->conference,'division' => $record->division, 'netPts' => $record->netPts);
+			$leaguetables[$record->division]['teams'][] = array('code' => $record->code, 'name' => $record->name,'conference' => $record->conference,
+										'division' => $record->division, 'netPts' => $record->netPts, 'ptsFor' => $record->pointsfor,
+										'ptsAgainst' => $record->pointsagainst, 'home' => $record->home, 'road' => $record->road);
 		}
 
 		ksort($leaguetables);
@@ -45,7 +52,9 @@ class League extends Application {
 		$afcleaguetable = array();
 		$records = $this->team->all_league($ordValue);
 		foreach ($records as $record) {
-			$nflteams[] = array('id' => $record->id, 'name' => $record->name, 'city' => $record->city,'conference' => $record->conference,'division' => $record->division, 'netPts' => $record->netPts);
+			$nflteams[] = array('code' => $record->code, 'name' => $record->name,'conference' => $record->conference,
+										'division' => $record->division, 'netPts' => $record->netPts, 'ptsFor' => $record->pointsfor,
+										'ptsAgainst' => $record->pointsagainst, 'home' => $record->home, 'road' => $record->road);
 		}
 		$afcleaguetable['teams'] = $nflteams;
 		$afcleaguetable['title'] = "NFL Teams";
@@ -59,8 +68,11 @@ class League extends Application {
 
 		$afcleaguetable = array();
 		$records = $this->team->all_afc($ordValue);
+		$afcteams = array();
 		foreach ($records as $record) {
-			$afcteams[] = array('id' => $record->id, 'name' => $record->name, 'city' => $record->city,'conference' => $record->conference,'division' => $record->division, 'netPts' => $record->netPts);
+			$afcteams[]  = array('code' => $record->code, 'name' => $record->name,'conference' => $record->conference,
+										'division' => $record->division, 'netPts' => $record->netPts, 'ptsFor' => $record->pointsfor,
+										'ptsAgainst' => $record->pointsagainst, 'home' => $record->home, 'road' => $record->road);
 		}
 		$afcleaguetable['teams'] = $afcteams;
 		$afcleaguetable['title'] = "AFC Teams";
@@ -68,8 +80,11 @@ class League extends Application {
 
 		$nfcleaguetable = array();
 		$records = $this->team->all_nfc($ordValue);
+		$nfcteams = array();
 		foreach ($records as $record) {
-			$nfcteams[] = array('id' => $record->id, 'name' => $record->name, 'city' => $record->city,'conference' => $record->conference,'division' => $record->division, 'netPts' => $record->netPts);
+			$nfcteams[] = array('code' => $record->code, 'name' => $record->name,'conference' => $record->conference,
+										'division' => $record->division, 'netPts' => $record->netPts, 'ptsFor' => $record->pointsfor,
+										'ptsAgainst' => $record->pointsagainst, 'home' => $record->home, 'road' => $record->road);
 		}
 		$nfcleaguetable['teams'] = $nfcteams;
 		$nfcleaguetable['title'] = "NFC Teams";
@@ -77,13 +92,12 @@ class League extends Application {
 
 		$this->data['league_tables'] = $leaguetables;
 	}
-	/**
-		 * This is the controller for the football league team list.
-			 *
-			 * @author Darnell Andries
-		 */
+
 	public function index()
 	{
+		if (count($this->team->all()) < 1) {
+				$this->team->load_table();
+		}
 
 		$this->data['pagebody'] = 'leaguelist';    // this is the view we want shown
 		// build the list of teams, to pass on to our view

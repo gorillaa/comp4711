@@ -4,9 +4,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 // the menu basics (text navbar)
 $config['menu_choices'] = array(
     'menudata' => array(
+        array('name' => 'Home', 'link' => '/'),
         array('name' => 'League', 'link' => '/league'),
         array('name' => 'Roster', 'link' => '/playerroster'),
-        array('name' => 'Scores', 'link' => '/scorescontroller'),
+        array('name' => 'Scores', 'link' => '/scores'),
         array('name' => 'About', 'link' => '/about')
     ));
 

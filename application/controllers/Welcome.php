@@ -2,41 +2,92 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Welcome extends Application {
-
 	/**
 	 * This is the controller for the homepage.
-         * 
-         * @author Luka Bresan
+         *
+         * @author Luka Bresan, Darnell Andries, Dima Goncharov
 	 */
 	public function index()
 	{
-            $this->data['pagebody'] = 'homepage';    // this is the view we want shown
-            $teams = $this->team->all();
-            $list = array();
-            
+      $this->data['pagebody'] = 'homepage';    // this is the view we want shown
+      $teams = $this->team->all();
+      $list = array();
+
 	    foreach ($teams as $team) {
-	        $list[$team["name"]] = $team["name"];
+	        $list[$team["code"]] = $team["name"];
 	    }
-            
+
 	    $this->data['selection'] =  form_dropdown('teams', $list, '', 'id="teams"');
-            
-            //$results = predict($this->input->post('team'));
-            
-            if ($this->input->server('REQUEST_METHOD') == 'POST'){
-                //TODO: replace NULL with $results
-                $this->data['prediction'] = $this->load->view("result_view", NULL, TRUE);
-            } else {
-                $this->data['prediction'] = "";
-            }
-             
-            
-            $this->render();
+
+			$this->data['additionalJs'] = '<script src="/assets/js/prediction.js"></script>';
+      $this->render();
 	}
-        
-        public function predict(){
-            
-            //TODO: implement prediction here
-            //return array
-            
-        }
+
+  public function prediction($teamid) {
+			$packersgames = $this->score->getscores('GB');
+
+			$avgsum = 0;
+			$avg_opponentsum = 0;
+			$avgcount = 0;
+			$avg_opponentcount = 0;
+
+			$average1 = -1;
+			$average2 = -1;
+			$average3 = 0;
+
+			foreach ($packersgames as $game) {
+
+					if ($game->hometeam == 'GB') {
+							$win = $game->awayscore < $game->homescore ? 1 : 0;
+							if ($game->awayteam == $teamid) {
+									$avg_opponentcount++;
+									$avg_opponentsum += $win;
+							}
+					} else if ($game->awayteam == 'GB') {
+							$win = $game->awayscore > $game->homescore ? 1 : 0;
+							if ($game->hometeam == $teamid) {
+									$avg_opponentcount++;
+									$avg_opponentsum += $win;
+							}
+					} else {
+							continue;
+					}
+					$avgcount++;
+					$avgsum += $win;
+					if ($avgcount == 5) {
+							$average2 = $avgsum / $avgcount;
+							$winslast = $avgsum;
+					}
+			}
+
+			if ($average2 == -1) {
+					$average2 = $avgsum / $avgcount;
+					$winslast = $avgsum;
+			}
+
+			$average1 = $avgsum / $avgcount;
+
+			if ($avg_opponentcount > 0) {
+					$average3 = $avg_opponentsum / $avg_opponentcount;
+			}
+
+			$prediction = (0.7 * $average1) + (0.2 * $average2) + (0.1 * $average3);
+
+			if ($avg_opponentcount == 0) {
+					$prediction = $prediction / 0.9;
+			}
+
+			$prediction = round($prediction * 100, 2);
+
+			$this->data["totalgames"] = $avgcount;
+			$this->data["gamewins"] = $avgsum;
+			$this->data["gamewinslast"] = $winslast;
+			$this->data["oppgamewins"] = $avg_opponentsum;
+			$this->data["oppgames"] = $avg_opponentcount;
+			$this->data["average"] = $average1;
+			$this->data["fivegames"] = $average2;
+			$this->data["oppavg"] = $average3;
+			$this->data["prediction"] = $prediction;
+			$this->parser->parse('predictionview', $this->data);
+  }
 }

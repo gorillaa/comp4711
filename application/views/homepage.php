@@ -1,15 +1,15 @@
 <div class="row">
-    
+
     <div>
-        <form action ="index.php" method="post">
-            {selection}
-            <button id="button">
-            Predict
-            </button>
-        </form>
-        <div id="result"> 
-            {prediction}
+        {selection}
+        <a class="btn btn-primary" href="#" id="predictBtn">
+        Predict
+        </a>
+
+        <div id="result" style="padding-top:15px;">
+
         </div>
+        <b>Formula</b> = 70% * (overall average) + 20% * (last 5 games average) + 10% * (average of last 5 games against this opponent)
     </div>
-    
+
 </div>

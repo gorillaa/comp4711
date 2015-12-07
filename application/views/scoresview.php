@@ -1,23 +1,19 @@
 <h2>Scores</h2>
-<div class="table">
-<table>
+<table class="table">
     <tr>
-        <th>Number</th>
         <th>Away</th>
         <th>Home</th>
-        <th>Date</th>
         <th>Away Score</th>
         <th>Home Score</th>
+        <th>Date</th>
     </tr>
     {scores}
     <tr>
-        <td>{scoreentry}</td>
-        <td>{away}</td>
-        <td>{home}</td>
-        <td>{date}</td>
+        <td>{awayteam}</td>
+        <td>{hometeam}</td>
         <td>{awayscore}</td>
         <td>{homescore}</td>
+        <td>{date}</td>
     </tr>
     {/scores}
 </table>
-</div>
